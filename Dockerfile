@@ -13,10 +13,10 @@ RUN npm install -g pnpm
 WORKDIR /app
 
 # Copy package-related files first to leverage Docker's caching mechanism
-COPY package.json package-lock.json* ./
+COPY package.json pnpm-lock.yaml ./
 
-# Install project dependencies using npm ci (ensures a clean, reproducible install)
-RUN --mount=type=cache,target=/root/.npm pnpm install
+# Install project dependencies
+RUN --mount=type=cache,target=/root/.local/share/pnpm/store pnpm install --frozen-lockfile
 
 # Copy the rest of the application source code into the container
 COPY . .
