@@ -19,6 +19,9 @@
     "vue3-instagram-feed": "^0.1.4",
     "vuetify": "^3.10.1"
   },
+  "pnpm": {
+    "onlyBuiltDependencies": ["@parcel/watcher", "esbuild"]
+  },
   "devDependencies": {
     "@tsconfig/node22": "^22.0.0",
     "@types/node": "^22.9.0",
