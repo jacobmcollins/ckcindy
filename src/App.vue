@@ -97,8 +97,9 @@ const goToAboutUs = () => {
 
 .about-sheet {
   background-color: rgba(255, 255, 255, 0.8) !important;
-  margin: 32px;
+  margin: 32px auto;
   border-radius: 8px;
+  max-width: 900px;
 }
 
 .about-sheet :deep(.v-card-text) {
