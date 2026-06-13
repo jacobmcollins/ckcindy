@@ -7,7 +7,7 @@ ARG NGINX_VERSION=alpine3.22
 # Use a lightweight Node.js image for building (customizable via ARG)
 FROM node:${NODE_VERSION} AS builder
 
-RUN npm install -g pnpm
+RUN npm install -g pnpm@10.26.1
 
 # Set the working directory inside the container
 WORKDIR /app
