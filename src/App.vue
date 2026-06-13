@@ -2,7 +2,7 @@
   <v-app>
       <v-app-bar app color="white" flat>
         <v-app-bar-title>
-          Courage & Kindness Co
+          <img src="./assets/CKC5.PNG" class="logo" alt="Courage & Kindness Co" />
         </v-app-bar-title>
         <!-- <template v-slot:prepend>
           <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
@@ -28,13 +28,10 @@
         </v-list>
       </v-navigation-drawer>
 
-      <v-main>
-        <div>
-              <v-img class="test" src="./assets/background.jpg" aspect-ratio="1" cover/>
-        </div>
-        <v-sheet>
-          <v-card-title class="text-h5">About Us</v-card-title>
-          <v-card-text class="text-body-1">
+      <v-main class="main-bg">
+        <v-sheet class="about-sheet">
+          <v-card-title class="text-black text-center about-title">About Us</v-card-title>
+          <v-card-text class="text-body-1 text-black text-center">
             Courage & Kindness Co. provides the magic of meeting beloved fairytale characters to local nonprofits, hospitals, and the community. At no charge, children in difficult circumstances are given the opportunity to make priceless memories with their favorite characters. CKC specializes in unique experiences tailored to individual children, but also works closely with Down Syndrome Indiana, multiple autism centers, the UMDF, Peyton Manning Children's Hospital, and other local organizations.
           </v-card-text>
         </v-sheet>
@@ -90,23 +87,42 @@ const goToAboutUs = () => {
 </script>
 
 <style scoped>
-/* Full viewport background image */
-.page {
+.main-bg {
   min-height: 100vh;
-  position: relative;
-  background-image: url("./assets/background.jpg");
+  background-image: url("./assets/DSC_0798.JPG");
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.about-sheet {
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  margin: 32px;
+  border-radius: 8px;
+}
+
+.about-sheet :deep(.v-card-text) {
+  font-family: 'Rosarivo', serif !important;
+}
+
+.about-title {
+  font-family: 'Passions Conflict', cursive !important;
+  font-size: 4rem !important;
 }
 
 .instagram-feed {
   margin: 16px;
 }
 
-.test {
-  max-width: 100%;
-  height: 300px;
+.instagram-feed behold-widget {
+  --behold-border: none;
+  border: none !important;
+}
+
+.logo {
+  height: 48px;
+  width: auto;
+  mix-blend-mode: multiply;
 }
 
 </style>
