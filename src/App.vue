@@ -1,77 +1,112 @@
 <template>
-  <!-- Full-page background -->
-  <v-container fluid class="page">
-    <!-- Optional dark overlay for readability -->
-    <div class="overlay"></div>
+  <v-app>
+      <v-app-bar app color="white" flat>
+        <v-app-bar-title>
+          Courage & Kindness Co
+        </v-app-bar-title>
+        <!-- <template v-slot:prepend>
+          <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+        </template> -->
+        <v-btn icon="mdi-email" color="#666" href="mailto:info@ckcindy.org">
+        </v-btn>
+        <v-btn icon="mdi-facebook" color="#1877F2" href="https://www.facebook.com/courageandkindnessco">
+        </v-btn>
+        <v-btn  icon="mdi-instagram" color="#E1306C" href="https://www.instagram.com/courageandkindnessco">
+        </v-btn>
+        <v-btn base-color="red" rounded variant="tonal" href="https://givebutter.com/support-ckc-indy" target="_blank">
+          <template v-slot:prepend>
+            <v-icon>mdi-heart</v-icon>
+          </template>
+          DONATE
+        </v-btn>
+      </v-app-bar>
 
-    <!-- Card wrapper: centered horizontally, near top -->
-    <div class="card-wrap">
-      <v-card class="pa-1 opacity-70" max-width="640" elevation="10">
-        <v-card-title class="text-h5">About Us</v-card-title>
-        <v-card-text>
-          Courage & Kindness Co. provides the magic of meeting beloved fairytale characters to local nonprofits, hospitals, and the community. At no charge, children in difficult circumstances are given the opportunity to make priceless memories with their favorite characters. CKC specializes in unique experiences tailored to individual children, but also works closely with Down Syndrome Indiana, multiple autism centers, the UMDF, Peyton Manning Children's Hospital, and other local organizations.
-        </v-card-text>
+      <v-navigation-drawer v-model="drawer" temporary location="top">
         <v-list>
-          <v-list-item href="mailto:info@ckcindy.org">
-            <template v-slot:prepend>
-              <v-avatar>
-                <v-icon icon="mdi-email"></v-icon>
-              </v-avatar>
-            </template>
-            <v-list-item-title>info@ckcindy.org</v-list-item-title>
-            <v-list-item-subtitle>Email</v-list-item-subtitle>
-          </v-list-item>
-          <v-list-item href="https://www.facebook.com/courageandkindnessco">
-            <template v-slot:prepend>
-              <v-avatar>
-                <v-icon icon="mdi-facebook"></v-icon>
-              </v-avatar>
-            </template>
-            <v-list-item-subtitle>Facebook</v-list-item-subtitle>
-          </v-list-item>
-          <v-list-item href="https://www.instagram.com/courageandkindnessco">
-            <template v-slot:prepend>
-              <v-avatar>
-                <v-icon icon="mdi-instagram"></v-icon>
-              </v-avatar>
-            </template>
-            <v-list-item-subtitle>Instagram</v-list-item-subtitle>
-          </v-list-item>
+          <v-list-item @click="goToHome">Home</v-list-item>
+          <v-list-item @click="goToAboutUs">About Us</v-list-item>
         </v-list>
-      </v-card>
-    </div>
-  </v-container>
+      </v-navigation-drawer>
+
+      <v-main>
+        <div>
+              <v-img class="test" src="./assets/background.jpg" aspect-ratio="1" cover/>
+        </div>
+        <v-sheet>
+          <v-card-title class="text-h5">About Us</v-card-title>
+          <v-card-text class="text-body-1">
+            Courage & Kindness Co. provides the magic of meeting beloved fairytale characters to local nonprofits, hospitals, and the community. At no charge, children in difficult circumstances are given the opportunity to make priceless memories with their favorite characters. CKC specializes in unique experiences tailored to individual children, but also works closely with Down Syndrome Indiana, multiple autism centers, the UMDF, Peyton Manning Children's Hospital, and other local organizations.
+          </v-card-text>
+        </v-sheet>
+        <div class="instagram-feed">
+          <behold-widget feed-id="pdEDR4FM2jDy7rrY2GgX"></behold-widget>
+        </div>
+        <!-- <v-container fluid class="page">
+          <div class="about-card">
+            <v-card class="pa-1 opacity-70" max-width="640" elevation="10">
+              <v-card-title class="text-h5">About Us</v-card-title>
+              <v-card-text>
+                Courage & Kindness Co. provides the magic of meeting beloved fairytale characters to local nonprofits, hospitals, and the community. At no charge, children in difficult circumstances are given the opportunity to make priceless memories with their favorite characters. CKC specializes in unique experiences tailored to individual children, but also works closely with Down Syndrome Indiana, multiple autism centers, the UMDF, Peyton Manning Children's Hospital, and other local organizations.
+              </v-card-text>
+            </v-card>
+          </div>
+            <v-carousel class="instagram-card" hide-delimiters>
+              <v-carousel-item
+                  src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+                ></v-carousel-item>
+
+                <v-carousel-item
+                  src="https://cdn.vuetifyjs.com/images/cards/hotel.jpg"
+                ></v-carousel-item>
+
+                <v-carousel-item
+                  src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+                ></v-carousel-item>
+            </v-carousel>
+        </v-container> -->
+      </v-main>
+  </v-app>
 </template>
+
+<script setup lang="ts">
+import { ref, onMounted } from 'vue';
+
+onMounted(() => {
+  const s = document.createElement('script');
+  s.type = 'module';
+  s.src = 'https://w.behold.so/widget.js';
+  document.head.append(s);
+});
+
+const drawer = ref<Boolean>(true);
+
+const goToHome = () => {
+  drawer.value = false;
+};
+
+const goToAboutUs = () => {
+  drawer.value = false;
+};
+</script>
 
 <style scoped>
 /* Full viewport background image */
 .page {
   min-height: 100vh;
   position: relative;
-  background-image: url("./assets/background.jpg"); /* put your image in /public/images/bg.jpg */
+  background-image: url("./assets/background.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
-/* Optional overlay to improve contrast */
-.overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.35);
+.instagram-feed {
+  margin: 16px;
 }
 
-/* Center horizontally, but keep near the top */
-.card-wrap {
-  position: relative; /* above overlay */
-  z-index: 1;
-
-  display: flex;
-  justify-content: center;
-
-  padding-top: 48px;   /* distance from top */
-  padding-left: 16px;  /* mobile breathing room */
-  padding-right: 16px;
-
+.test {
+  max-width: 100%;
+  height: 300px;
 }
+
 </style>
